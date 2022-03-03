@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FrontEnd.Pages.PlanPage"
+             NavigationPage.HasNavigationBar="False">
+    
+    <ContentPage.Content>
+        <StackLayout Style="{StaticResource Background}">
+            <Frame BackgroundColor="#DDCDFF">
+                <StackLayout>
+                    <StackLayout VerticalOptions="Center" Orientation="Horizontal">
+                        <StackLayout>
+                            <Label Text="ПЛАН:" Margin="10,0,20,0" FontSize="18" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                            <Label Text="Создать приложение" Margin="10,0,20,0" FontSize="18" TextColor="Black"/>
+                        </StackLayout>
+                        <Image BackgroundColor="Magenta" HeightRequest="35" WidthRequest="35" Margin="20,0,20,0" VerticalOptions="Center"/>
+                        <Image BackgroundColor="Magenta" HeightRequest="35" WidthRequest="35" VerticalOptions="Center"/>
+                        </StackLayout>
+                        <Frame BackgroundColor="#FED6FF">
+                            <StackLayout>
+                            <!-- Доделать -->
+                            </StackLayout>
+                        </Frame>
+                </StackLayout>
+            </Frame>
+            <ScrollView>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="30,30,0,0">
+                        <Button Text="Посмотреть видео po figma" FontSize="18" BackgroundColor="#FADDFF" WidthRequest="240" CornerRadius="10"/>
+                        <Frame WidthRequest="10" HeightRequest="10" Margin="20,0,0,0" CornerRadius="90" BorderColor="Black" VerticalOptions="Center" BackgroundColor="White"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Horizontal" Margin="30,30,0,0">
+                        <Button Text="Сделать макет" FontSize="18" BackgroundColor="#FADDFF" WidthRequest="240" CornerRadius="10"/>
+                        <Frame WidthRequest="10" HeightRequest="10" Margin="20,0,0,0" CornerRadius="90" BorderColor="Black" VerticalOptions="Center" BackgroundColor="LightGreen"/>
+                    </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

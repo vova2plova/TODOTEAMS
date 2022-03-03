@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FrontEnd.Pages.RegisterPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout Style="{StaticResource Background}">
+            <Frame BackgroundColor="#DDCDFF" HeightRequest="75">
+                <Label x:Name="Result" Text="Регистрация" FontSize="30" TextColor="Black" HorizontalOptions="Center" VerticalOptions="Center"/>
+            </Frame>
+            <StackLayout>
+                <Label Text="Придумайте Логин" TextColor="Black" FontSize="18" HorizontalOptions="Center"/>
+                <Frame Margin="40,12" CornerRadius="90" BackgroundColor="#FADDFF">
+                    <Entry x:Name="Login" BackgroundColor="#FADDFF"/>
+                </Frame>
+                <Label Text="Придумайте Пароль" TextColor="Black" FontSize="18" HorizontalOptions="Center"/>
+                <Frame Margin="40,12" CornerRadius="90" BackgroundColor="#FADDFF">
+                    <Entry x:Name="Password" BackgroundColor="#FADDFF"/>
+                </Frame>
+                <Label Text="Как к вам обращаться?" TextColor="Black" FontSize="18" HorizontalOptions="Center"/>
+                <Frame Margin="40,12" CornerRadius="90" BackgroundColor="#FADDFF">
+                    <Entry x:Name="Name" BackgroundColor="#FADDFF"/>
+                </Frame>
+                <Button Clicked="Button_Clicked" Style="{StaticResource MainPageButtons}" Text="Регистрация" Margin="0,20" WidthRequest="300" HeightRequest="100"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

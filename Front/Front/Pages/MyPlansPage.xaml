@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FrontEnd.Pages.MyPlansPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Style="{StaticResource Background}">
+                <Frame HeightRequest="100" BackgroundColor="#DDCDFF">
+                    <StackLayout VerticalOptions="Center" Orientation="Horizontal" HeightRequest="35">
+                        <Label Text="Мои планы" Margin="30,0,20,0" FontSize="30" TextColor="Black" VerticalOptions="Center"/>
+                        <Image Source="plus" HeightRequest="35" WidthRequest="35" Margin="20,0,20,0" HorizontalOptions="EndAndExpand">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                </Frame>
+                <StackLayout x:Name="Plan_list" BindableLayout.ItemsSource="{Binding Plans}">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" Margin="30,30,0,0">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectPlanCommand, Source={x:Reference Plans}}" CommandParameter="{Binding Id}"/>
+                                </StackLayout.GestureRecognizers>
+                                <Frame BackgroundColor="#FADDFF" WidthRequest="240" CornerRadius="10">
+                                    <Label Text="{Binding Title}" FontSize="18" BackgroundColor="#FADDFF" TextColor="Black"/>
+                                </Frame>
+                                <Frame WidthRequest="10" HeightRequest="10" Margin="20,0,0,0" CornerRadius="90" BorderColor="Black" VerticalOptions="Center" BackgroundColor="White"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

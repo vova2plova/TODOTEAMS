@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FrontEnd.Pages.LogInPage"            
+             NavigationPage.HasNavigationBar="False">
+
+    <StackLayout Style="{StaticResource Background}">
+        <StackLayout VerticalOptions="CenterAndExpand">
+            <Label Text="Добро" FontSize="41" HorizontalOptions="Center" TextColor="Black"/>
+            <Label Text="Пожаловать" FontSize="41" HorizontalOptions="Center" TextColor="Black"/>
+            <Label Text="В TODOTEAMS!"  FontSize="41" HorizontalOptions="CenterAndExpand" TextColor="Black"/>
+            <Frame Margin="40,12" CornerRadius="90" BackgroundColor="#FADDFF">
+                <Entry x:Name="Login"/>
+            </Frame>
+            <Frame Margin="40,12" CornerRadius="90" BackgroundColor="#FADDFF">
+                <Entry x:Name="Password"/>
+            </Frame>
+            <Label Text="ВХОД" TextColor="Black" FontSize="24" HorizontalOptions="Center" Margin="12">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="LogIn_Clicked"/>
+                </Label.GestureRecognizers>
+            </Label>
+            <Label Text="РЕГИСТРАЦИЯ" TextColor="Black" FontSize="24" HorizontalOptions="Center" Margin="12">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ToRegisterPage_Clicked"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>

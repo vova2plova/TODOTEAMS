@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Front.Pages.AddPlanPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame HeightRequest="50" BackgroundColor="#DDCDFF">
+                        <Label Text="Создание плана" Margin="10,0,20,0" FontSize="30" TextColor="Black" VerticalOptions="Center"/>
+                </Frame>
+                <Frame HeightRequest="50" BackgroundColor="#FED6FF">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Название" Margin="10,0,0,0" FontSize="18" TextColor="Black" VerticalOptions="Center"/>
+                        <Entry x:Name="PlanName" HorizontalOptions="EndAndExpand" WidthRequest="200" HeightRequest="30"/>
+                    </StackLayout>
+                </Frame>
+                <Frame HeightRequest="50" BackgroundColor="#F9BCDD">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Совместно с" Margin="10,0,0,0" FontSize="18" TextColor="Black" VerticalOptions="Center"/>
+                        <Entry x:Name="TeammateNickName" HorizontalOptions="EndAndExpand" WidthRequest="200" HeightRequest="30"/>
+                    </StackLayout>
+                </Frame>
+                <Button Text="Добавить" Background="#F9BCDD"/>
+                <Frame BackgroundColor="#F9BCDD">
+                    <StackLayout x:Name="TeammatesList">
+                        <Label Text="Совместно с:" HorizontalOptions="Center" TextColor="Black" FontSize="18"/>
+                    </StackLayout>
+                </Frame>
+                <Frame HeightRequest="50" BackgroundColor="#FEC7FF">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Оставить открытым?" Margin="10,0,0,0" FontSize="18" TextColor="Black" VerticalOptions="Center"/>
+                        <CheckBox x:Name="IsPrivate" HorizontalOptions="EndAndExpand" Margin="5,0"/>
+                    </StackLayout>
+                </Frame>
+                <Frame HeightRequest="50" BackgroundColor="#CDAEF5">
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="Задача" Margin="10,0,10,0" FontSize="18" TextColor="Black" VerticalOptions="Center"/>
+                        <Entry x:Name="TaskName" HorizontalOptions="EndAndExpand" WidthRequest="200" HeightRequest="30"/>
+                        <Image Source="plus" WidthRequest="30" Margin="15,0,0,0">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                </Frame>
+                <Frame BackgroundColor="#CDAEF5">
+                    <StackLayout x:Name="TaskList">
+                        <Label Text="Задачи :" HorizontalOptions="Center" TextColor="Black" FontSize="18 "/>
+                    </StackLayout>
+                </Frame>
+                <Button Clicked="AddPlan_Clicked" BackgroundColor="#CDAEF5" TextColor="Black" Text="Создать"/>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
