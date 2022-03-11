@@ -10,7 +10,6 @@ namespace Data.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public string Name { get; set; }
-        [ForeignKey("PlansFK")]
         public List<Plan> PersonalPlans { get; set; }
     }
 }

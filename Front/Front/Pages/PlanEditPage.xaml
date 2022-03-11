@@ -1,20 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Front.Pages.AddPlanPage"
+             x:Class="Front.Pages.PlanEditPage"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <StackLayout>
-            <Frame HeightRequest="75" BackgroundColor="#DDCDFF">
+            <Frame HeightRequest="30" BackgroundColor="#DDCDFF">
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="Создание плана" Margin="10,0,20,0" FontSize="18" TextColor="Black" VerticalOptions="Center"/>
-                    <Button Clicked="AddPlan_Clicked" BackgroundColor="#CDAEF5" TextColor="Black" Text="Создать" CornerRadius="30"/>
+                    <Label Text="Изменение плана" Margin="10,0,20,0" FontSize="18" TextColor="Black" VerticalOptions="Center"/>
                 </StackLayout>
             </Frame>
             <Frame HeightRequest="50" BackgroundColor="#FED6FF">
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Название" Margin="10,0,0,0" FontSize="18" TextColor="Black" VerticalOptions="Center"/>
-                    <Entry x:Name="PlanName" HorizontalOptions="EndAndExpand" WidthRequest="150" HeightRequest="30"/>
+                    <Entry x:Name="PlanTitle" HorizontalOptions="EndAndExpand" WidthRequest="150" HeightRequest="30"/>
                 </StackLayout>
             </Frame>
             <Frame HeightRequest="50" BackgroundColor="#F9BCDD">
@@ -24,11 +23,25 @@
                 </StackLayout>
             </Frame>
             <Button Text="Добавить" Background="#F9BCDD"/>
-            <Button Text="Просмотр соучастников" BackgroundColor="#F9BCDD"/>
+            <Button Text="Просмотр соучастников" BackgroundColor="#F9BCDD" Clicked="ShowTeammates_Clicked"/>
+            <Frame HeightRequest="50" BackgroundColor="#FEC7FF">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Выполнен?" Margin="10,0,0,0" FontSize="18" TextColor="Black" VerticalOptions="Center"/>
+                    <Image x:Name="IsComplited" WidthRequest="40" HorizontalOptions="EndAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="EditIsComplited_Tapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+            </Frame>
             <Frame HeightRequest="50" BackgroundColor="#FEC7FF">
                 <StackLayout Orientation="Horizontal">
                     <Label Text="Оставить открытым?" Margin="10,0,0,0" FontSize="18" TextColor="Black" VerticalOptions="Center"/>
-                    <CheckBox x:Name="IsPrivate" HorizontalOptions="EndAndExpand" Margin="5,0"/>
+                    <Image x:Name="IsPrivate" WidthRequest="40" HorizontalOptions="EndAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="EditIsPrivate_Tapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
                 </StackLayout>
             </Frame>
             <Frame HeightRequest="50" BackgroundColor="#CDAEF5">
@@ -37,12 +50,16 @@
                     <Entry x:Name="TaskName" HorizontalOptions="EndAndExpand" WidthRequest="150" HeightRequest="30"/>
                     <Image Source="plus" WidthRequest="30" Margin="15,0,0,0">
                         <Image.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="AddTask_Clicked"/>
+                            <TapGestureRecognizer Tapped="AddTask_Tapped"/>
                         </Image.GestureRecognizers>
                     </Image>
                 </StackLayout>
             </Frame>
-            <Button Text="Просмотр задач" BackgroundColor="#CDAEF5" Clicked="TasksShow_Clicked"/>
+            <Button Text="Просмотр задач" BackgroundColor="#CDAEF5" Clicked="ShowTasks_Tapped"/>
+            <StackLayout Orientation="Horizontal">
+            <Button BackgroundColor="#CDAEF5" TextColor="Black" Text="Удалить" CornerRadius="15" WidthRequest="175" Clicked="DeletePlan_Clicked"/>
+            <Button BackgroundColor="#CDAEF5" TextColor="Black" Text="Сохранить" CornerRadius="15" WidthRequest="175" HorizontalOptions="EndAndExpand" Clicked="SavePlan_Clicked"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

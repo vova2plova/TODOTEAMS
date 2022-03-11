@@ -23,18 +23,34 @@ namespace Front.Pages
             BindingContext = _vm;
         }
 
+        private void AddTask_Clicked(object sender, EventArgs e)
+        {
+            var task = new TaskModel
+            {
+                IsComplited = false,
+                Name = TaskName.Text
+            };
+            TaskName.Text = "";
+            _vm.AddNewTask(task);
+        }
+
         private void AddPlan_Clicked(object sender, EventArgs e)
         {
             var plan = new Plan
             {
-                IdUser = Preferences.Get("current_user_id", 0),
+                UserId = Preferences.Get("current_user_id", 0),
                 IsComplited = false,
-                IsPrivate = IsPrivate.IsChecked,
+                IsPrivate = !IsPrivate.IsChecked,
                 PlanTasks = tasks,
                 Teammates = teammates,
                 Title = PlanName.Text
             };
             _vm.AddNewPlan(plan);
+        }
+
+        private void TasksShow_Clicked(object sender, EventArgs e)
+        {
+            _vm.ShowTask();
         }
     }
 }

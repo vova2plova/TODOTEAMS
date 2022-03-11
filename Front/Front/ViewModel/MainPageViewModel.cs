@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace Front.ViewModel
@@ -20,6 +21,7 @@ namespace Front.ViewModel
 
         public async void RedirectToLogin()
         {
+            Preferences.Clear();
             await Application.Current.MainPage.Navigation.PushAsync(new LogInPage());
         }
     }

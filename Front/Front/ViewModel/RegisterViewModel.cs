@@ -25,7 +25,7 @@ namespace FrontEnd.ViewModel
             if (_user != null)
             {
                 Preferences.Set("current_user_id", _user.Id);
-                await Application.Current.MainPage.Navigation.PushAsync(new MainPage());
+                Application.Current.MainPage = new NavigationPage(new MainPage());
                 return true;
             }
             new UserDialog().Toast("Такой пользователь уже создан");

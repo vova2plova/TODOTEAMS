@@ -3,6 +3,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Front.Pages;
 using FrontEnd.Pages;
+using Xamarin.Essentials;
 
 namespace Front
 {
@@ -12,7 +13,10 @@ namespace Front
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new LogInPage());
+            if (Preferences.Get("current_user_id", 0) != 0)
+                MainPage = new NavigationPage(new MainPage());
+            else
+                MainPage = new NavigationPage(new LogInPage());
         }
 
         protected override void OnStart()

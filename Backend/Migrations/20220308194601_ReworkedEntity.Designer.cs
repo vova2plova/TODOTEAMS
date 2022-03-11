@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220224140207_AddPlanModel")]
-    partial class AddPlanModel
+    [Migration("20220308194601_ReworkedEntity")]
+    partial class ReworkedEntity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,21 +31,45 @@ namespace Backend.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("Complited")
+                    b.Property<bool>("IsComplited")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("IdUser")
-                        .HasColumnType("integer");
+                    b.Property<bool>("IsPrivate")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
-                    b.Property<bool>("isPrivate")
-                        .HasColumnType("boolean");
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.ToTable("Plan");
+                });
+
+            modelBuilder.Entity("Data.Models.TaskModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("IsComplited")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<int>("PlanId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlanId");
+
+                    b.ToTable("Task");
                 });
 
             modelBuilder.Entity("Data.Models.User", b =>
@@ -75,14 +99,23 @@ namespace Backend.Migrations
                     b.Property<int>("PersonalPlansId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("PlansFK")
+                    b.Property<int>("TeammatesId")
                         .HasColumnType("integer");
 
-                    b.HasKey("PersonalPlansId", "PlansFK");
+                    b.HasKey("PersonalPlansId", "TeammatesId");
 
-                    b.HasIndex("PlansFK");
+                    b.HasIndex("TeammatesId");
 
                     b.ToTable("PlanUser");
+                });
+
+            modelBuilder.Entity("Data.Models.TaskModel", b =>
+                {
+                    b.HasOne("Data.Models.Plan", null)
+                        .WithMany("PlanTasks")
+                        .HasForeignKey("PlanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("PlanUser", b =>
@@ -95,9 +128,14 @@ namespace Backend.Migrations
 
                     b.HasOne("Data.Models.User", null)
                         .WithMany()
-                        .HasForeignKey("PlansFK")
+                        .HasForeignKey("TeammatesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Data.Models.Plan", b =>
+                {
+                    b.Navigation("PlanTasks");
                 });
 #pragma warning restore 612, 618
         }

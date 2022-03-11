@@ -18,7 +18,7 @@ namespace Front.ViewModel
             {
                 new UserDialog().Toast("Успешно! Перенаправляем на главную");
                 Preferences.Set("current_user_id", _user.Id);
-                await Application.Current.MainPage.Navigation.PushAsync(new MainPage());
+                Application.Current.MainPage = new NavigationPage(new MainPage());
             }
             else
                 new UserDialog().Toast("Неверный логин или пароль");

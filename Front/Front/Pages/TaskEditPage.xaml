@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Front.Pages.TaskEditPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#E5E5E5">
+            <Frame BackgroundColor="#DDCDFF">
+                <StackLayout>
+                    <StackLayout VerticalOptions="Center" Orientation="Horizontal">
+                        <Label Text="Редактирование задачи" Margin="10,0,20,0" FontSize="18" TextColor="Black" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <Frame BackgroundColor="#FEC7FF">
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Название" FontSize="18" TextColor="Black" VerticalOptions="Center"/>
+                    <Frame HeightRequest="40" WidthRequest="170" HorizontalOptions="EndAndExpand" CornerRadius="30">
+                        <Entry x:Name="TaskName" TextColor="Black"/>
+                    </Frame>
+                </StackLayout>
+            </Frame>
+            <Frame BackgroundColor="#FEC7FF">
+                <StackLayout Orientation="Horizontal" WidthRequest="40" HeightRequest="40">
+                    <Label Text="Выполнено?" FontSize="18" TextColor="Black" VerticalOptions="Center"/>
+                    <Image x:Name="TaskIsComplited" WidthRequest="40" HorizontalOptions="EndAndExpand">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+            </Frame>
+            <StackLayout VerticalOptions="EndAndExpand" Orientation="Horizontal" HeightRequest="80" BackgroundColor="#EDE7FE">
+                <Button Text="Удалить" WidthRequest="170" Margin="5,10,5,10" BackgroundColor="#C3AEFF" CornerRadius="15" Clicked="DeleteTask_Clicked"/>
+                <Button Text="Сохранить" WidthRequest="170" Margin="5,10,5,10" BackgroundColor="#C3AEFF" CornerRadius="15" Clicked="SaveTask_Clicked" HorizontalOptions="EndAndExpand"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

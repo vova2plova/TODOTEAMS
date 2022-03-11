@@ -5,7 +5,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace Backend.Migrations
 {
-    public partial class AddPlanModel : Migration
+    public partial class ReworkedEntity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,10 +15,10 @@ namespace Backend.Migrations
                 {
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    IdUser = table.Column<int>(type: "integer", nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: false),
                     Title = table.Column<string>(type: "text", nullable: true),
-                    isPrivate = table.Column<bool>(type: "boolean", nullable: false),
-                    Complited = table.Column<bool>(type: "boolean", nullable: false)
+                    IsPrivate = table.Column<bool>(type: "boolean", nullable: false),
+                    IsComplited = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -30,11 +30,11 @@ namespace Backend.Migrations
                 columns: table => new
                 {
                     PersonalPlansId = table.Column<int>(type: "integer", nullable: false),
-                    PlansFK = table.Column<int>(type: "integer", nullable: false)
+                    TeammatesId = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_PlanUser", x => new { x.PersonalPlansId, x.PlansFK });
+                    table.PrimaryKey("PK_PlanUser", x => new { x.PersonalPlansId, x.TeammatesId });
                     table.ForeignKey(
                         name: "FK_PlanUser_Plan_PersonalPlansId",
                         column: x => x.PersonalPlansId,
@@ -42,23 +42,52 @@ namespace Backend.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_PlanUser_User_PlansFK",
-                        column: x => x.PlansFK,
+                        name: "FK_PlanUser_User_TeammatesId",
+                        column: x => x.TeammatesId,
                         principalTable: "User",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Task",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    PlanId = table.Column<int>(type: "integer", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: true),
+                    IsComplited = table.Column<bool>(type: "boolean", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Task", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Task_Plan_PlanId",
+                        column: x => x.PlanId,
+                        principalTable: "Plan",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
-                name: "IX_PlanUser_PlansFK",
+                name: "IX_PlanUser_TeammatesId",
                 table: "PlanUser",
-                column: "PlansFK");
+                column: "TeammatesId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Task_PlanId",
+                table: "Task",
+                column: "PlanId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "PlanUser");
+
+            migrationBuilder.DropTable(
+                name: "Task");
 
             migrationBuilder.DropTable(
                 name: "Plan");

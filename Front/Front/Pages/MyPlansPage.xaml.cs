@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -17,13 +16,13 @@ namespace FrontEnd.Pages
         MyPlansViewModel _vm = new MyPlansViewModel();
         public MyPlansPage()
         {
-            InitializeComponent();
             BindingContext = _vm;
+            InitializeComponent();
         }
             
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
-            _vm.GetPersonalPlans();
+            _vm.GetPersonalPlans(Plan_list);
             base.OnAppearing();
         }
 

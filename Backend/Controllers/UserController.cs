@@ -37,14 +37,14 @@ namespace BackEnd.Controllers
         [HttpGet("login/{login}/{password}")]
         public ActionResult<User> LogIn(string login, string password)
         {
-            var user = db.User.FirstOrDefault(u => u.Name == login &&
+            var user = db.User.FirstOrDefault(u => u.Login == login &&
                                             u.Password == password);
             if (user != null)
                 return Ok(user);
             return NotFound();
         }
 
-        [HttpGet("GetAllUsersWithout/{id}")]
+        /*[HttpGet("GetAllUsersWithout/{id}")]
         public List<User> Get(int id)
         {
             var users = new List<User>(db.User);
@@ -59,6 +59,6 @@ namespace BackEnd.Controllers
             if (user != null)
                 return Ok(user);
             return NotFound("Пользователь не найден");
-        }
+        }*/
     }
 }

@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FrontEnd.Pages.MyPlansPage"
              NavigationPage.HasNavigationBar="False">
+
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Style="{StaticResource Background}">
+        <StackLayout Style="{StaticResource Background}">
                 <Frame HeightRequest="100" BackgroundColor="#DDCDFF">
                     <StackLayout VerticalOptions="Center" Orientation="Horizontal" HeightRequest="35">
                         <Label Text="Мои планы" Margin="30,0,20,0" FontSize="30" TextColor="Black" VerticalOptions="Center"/>
@@ -16,22 +16,23 @@
                         </Image>
                     </StackLayout>
                 </Frame>
-                <StackLayout x:Name="Plan_list" BindableLayout.ItemsSource="{Binding Plans}">
+            <ScrollView>
+                <StackLayout x:Name="Plan_list">
                     <BindableLayout.ItemTemplate>
                         <DataTemplate>
                             <StackLayout Orientation="Horizontal" Margin="30,30,0,0">
                                 <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectPlanCommand, Source={x:Reference Plans}}" CommandParameter="{Binding Id}"/>
+                                    <TapGestureRecognizer Command="{Binding BindingContext.SelectPlanCommand, Source={x:Reference Plan_list}}" CommandParameter="{Binding .}"/>
                                 </StackLayout.GestureRecognizers>
-                                <Frame BackgroundColor="#FADDFF" WidthRequest="240" CornerRadius="10">
+                                <Frame BackgroundColor="#FADDFF" WidthRequest="200" CornerRadius="10">
                                     <Label Text="{Binding Title}" FontSize="18" BackgroundColor="#FADDFF" TextColor="Black"/>
                                 </Frame>
-                                <Frame WidthRequest="10" HeightRequest="10" Margin="20,0,0,0" CornerRadius="90" BorderColor="Black" VerticalOptions="Center" BackgroundColor="White"/>
+                                <Image Source="{Binding IsComplited, Converter={StaticResource IsComplitedConverter}}" WidthRequest="50" HeightRequest="50" Margin="20,0,0,0" VerticalOptions="Center"/>
                             </StackLayout>
                         </DataTemplate>
                     </BindableLayout.ItemTemplate>
                 </StackLayout>
-            </StackLayout>
-        </ScrollView>
+            </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

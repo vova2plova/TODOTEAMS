@@ -10,11 +10,9 @@ namespace Data.Models
     {
         [Key]
         public int Id { get; set; }
-        [ForeignKey("PlansFK")]
-        public int IdUser { get; set; }
+        public int UserId { get; set; }
         public string Title { get; set; }
         public List<User> Teammates { get; set; }
-        [ForeignKey("TaskFK")]
         public List<TaskModel> PlanTasks { get; set; }
 
         public bool IsPrivate { get; set; }

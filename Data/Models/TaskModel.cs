@@ -10,8 +10,7 @@ namespace Data.Models
     {
         [Key]
         public int Id { get; set; }
-        [ForeignKey("TaskFK")]
-        public int IdPlan { get; set; }
+        public int PlanId { get; set; }
         public string Name { get; set; }
 
         public bool IsComplited { get; set; }

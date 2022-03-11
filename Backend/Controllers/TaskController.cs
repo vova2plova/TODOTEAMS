@@ -22,7 +22,34 @@ namespace BackEnd.Controllers
         [HttpGet("GetTasks/{id}")]
         public Task<List<TaskModel>> GetTasks(int id)
         {
-            return db.Task.Where(t => t.IdPlan == id).ToListAsync();
+            return db.Task.Where(t => t.PlanId == id).ToListAsync();
+        }
+
+        [HttpPut("EditTask")]
+        public async Task<ActionResult> EditTask(TaskModel task)
+        {
+            var _task = db.Task.FirstOrDefault(t => t.Id == task.Id);
+            if (_task != null)
+            {
+                _task.Name = task.Name;
+                _task.IsComplited = task.IsComplited;
+                await db.SaveChangesAsync();
+                return Ok();
+            }
+            return BadRequest();
+        }
+
+        [HttpDelete("DeleteTask/{id}")]
+        public async Task<ActionResult> DeleteTask(int id)
+        {
+            var task = db.Task.FirstOrDefault(t => t.Id == id);
+            if (task != null)
+            {
+                db.Task.Remove(task);
+                await db.SaveChangesAsync();
+                return Ok();
+            }
+            return BadRequest();
         }
     }
 }
